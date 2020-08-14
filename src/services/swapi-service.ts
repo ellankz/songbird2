@@ -2,7 +2,7 @@ class SwapiService {
 
     private  _apiBase = 'https://swapi.co/api';
 
-    private async getResource(url){
+    private async getResource(url: string){
         const res = await fetch(`${this._apiBase}${url}`);
 
         if (!res.ok){
@@ -18,7 +18,7 @@ class SwapiService {
         return res.results;
     }
 
-    public getPerson(id){
+    public getPerson(id: number){
         return this.getResource(`/people/${id}`);
     }
 }

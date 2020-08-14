@@ -1,0 +1,27 @@
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .score {
+        display: flex;
+        align-items: flex-end;
+        font-size: 1.2rem;
+    }
+}
+
+
+.button-panel {
+    .btn-group {
+        flex-wrap: wrap;
+        border-radius: 5px;
+        overflow: hidden;
+        display: flex;
+
+        button {
+            cursor: default;
+        }
+    }
+    margin-bottom: 1.5rem;
+}
