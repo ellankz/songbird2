@@ -1,34 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import BirdService from '../../services/bird-service';
+import React, { useEffect, useReducer } from 'react';
 import { BirdInterface } from '../../models/bird';
 import { Jumbotron, ListGroup } from 'react-bootstrap';
+import { NewOptionsDispatch, HighlightOptionDispatch } from '../../actions';
+import { initialHighlights } from '../../constants';
+import reducers from '../../reducers';
 import './options.scss';
 
 interface OptionsProps {
     onOptionSelected: (index: number) => void,
-    currentLevel: number
+    currentLevel: number,
+    guessed: boolean,
+    correctIndex: number | null
 }
 
 const Options = (props : OptionsProps) => {
-    const { onOptionSelected, currentLevel } = props;
-    const birdService = new BirdService();
-    const [birds, setBirds] = useState<Array<BirdInterface>>([]);
-    const [level, setLevel] = useState<number | null>(null);
-    const [currentBird, setCurrentBird] = useState<number | null>(null);
+    const { onOptionSelected, currentLevel, guessed, correctIndex } = props;
+    const [birds, dispatchBirds] = useReducer(reducers.optionsReducer, []);
+    const [birdsHighlights, dispatchBirdsHighlight] = useReducer(reducers.highlightsReducer, initialHighlights)
     
     useEffect(() => {
-        if (level !== null){
-            setBirds(birdService.getBirdsByLevel(level));
+        if (currentLevel !== null){
+            dispatchBirds(NewOptionsDispatch(currentLevel));
         }
-    }, [birdService, level]);
+    }, [currentLevel]);
 
-    useEffect(() => {
-        setLevel(currentLevel);
-    }, [currentLevel])
-
-    useEffect(() => {
-        if (currentBird !== null) onOptionSelected(currentBird);
-    }, [currentBird, onOptionSelected]);
+    const handleOptionCLick = (index: number) => {
+        onOptionSelected(index); // pass event to app
+        if (correctIndex !== null){
+            console.log('5');
+            dispatchBirdsHighlight(HighlightOptionDispatch(index, guessed, correctIndex)); // highlight the correct and incorrect answer
+        }
+    }
 
     return (
         <Jumbotron className="options">
@@ -37,7 +39,8 @@ const Options = (props : OptionsProps) => {
                     return (
                         <ListGroup.Item 
                             key={bird.id}
-                            onClick={() => setCurrentBird(index)}>
+                            className={birdsHighlights[index].color}
+                            onClick={() => handleOptionCLick(index)}>
                                 {bird.name}       
                         </ListGroup.Item>
                     );

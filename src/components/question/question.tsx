@@ -36,7 +36,7 @@ const Question = () => {
             <div>
                 <h3>{revealed ? bird.name : '*******'}</h3>
                 <hr />
-                <SoundPlayer sound={bird.audio} revealed={revealed} />
+                <SoundPlayer sound={bird.audio} />
             </div>
         </Jumbotron>
     );
