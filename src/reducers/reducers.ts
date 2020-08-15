@@ -4,7 +4,6 @@ import { dummyBird } from '../constants';
 import {
     LevelActionInterface,
     OptionsActionInterface,
-    DetailsActionInterface,
     QuestionActionInterface,
     HighlightActionInterface
 } from '../models/actions';
@@ -58,16 +57,6 @@ export const highlightsReducer = (state: BirdHighlightInterface[] = [], action: 
                 }
             });
         } 
-    default:
-        return state;
-    }
-}
-
-export const detailsReducer = (state: BirdInterface = dummyBird, action: DetailsActionInterface) => {
-    switch (action.type) {
-    case 'NEW_DETAILS_BIRD':
-        // use action.payload
-        return state;
     default:
         return state;
     }

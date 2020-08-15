@@ -2,7 +2,6 @@ import {
     LevelActionInterface,
     OptionsActionInterface,
     HighlightActionInterface,
-    DetailsActionInterface,
     QuestionActionInterface
 } from '../models/actions';
 
@@ -34,14 +33,6 @@ export const HighlightOptionDispatch = (index: number, guessed: boolean, correct
         }
     }
     return highlightAction;
-}
-
-export const NewDetailsBirdDispatch = (bird: BirdInterface) => {
-    const newDetailsBirdAction: DetailsActionInterface = {
-        type: 'NEW_DETAILS_BIRD',
-        payload: bird
-    }
-    return newDetailsBirdAction;
 }
 
 export const NewQuestionBirdDispatch = (bird: BirdInterface) => {

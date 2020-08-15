@@ -59,7 +59,7 @@ const App = () => {
     <div className="App">
       <Container>
         <Header currentLevel={level} />
-        <Question />
+        <Question level={level} correctIndex={correctIndex} guessed={guessed} />
         <div className="main">
           <Options onOptionSelected={handleOptionSelect} currentLevel={level} guessed={guessed} correctIndex={correctIndex} />
           <Details selectedBird={selectedBird} currentLevel={level} />

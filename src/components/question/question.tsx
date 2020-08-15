@@ -1,40 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import BirdService from '../../services/bird-service';
 import { BirdInterface } from '../../models/bird';
+import { dummyBird } from '../../constants';
 import { Jumbotron } from 'react-bootstrap';
 import SoundPlayer from '../sound-player';
 import unknownBird from '../../images/bird.jpg';
 import './question.scss';
 
-const Question = () => {
-    const [bird, setBird] = useState<BirdInterface>({
-        image: '',
-        name: '',
-        audio: '',
-        id: null,
-        description: '',
-        species: ''
-    });
+interface QuestionProps {
+    correctIndex: number | null,
+    guessed: boolean,
+    level: number
+}
 
-    const [revealed, setRevealed] = useState<boolean>(false);
+const Question = (props: QuestionProps) => {
+    const { correctIndex, level, guessed } = props;
+
+    const [bird, setBird] = useState<BirdInterface>(dummyBird);
 
     const birdService = new BirdService();
-
-    const updateBird = () => {
-        const receivedBird: BirdInterface = birdService.getBird(3, 2);
-        setBird(receivedBird);
-    }
-
     useEffect(() => {
-        updateBird();
-        setRevealed(true);
-    }, []);
+        if (correctIndex !== null){
+            const receivedBird: BirdInterface = birdService.getBird(level, correctIndex);
+            setBird(receivedBird);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [correctIndex, level]);
     
     return (
         <Jumbotron className="question">
-            <img src={revealed ? bird.image : unknownBird} alt={revealed ? bird.name : 'unknown bird'} />
+            <img src={guessed ? bird.image : unknownBird} alt={guessed ? bird.name : 'unknown bird'} />
             <div>
-                <h3>{revealed ? bird.name : '*******'}</h3>
+                <h3>{guessed ? bird.name : '*******'}</h3>
                 <hr />
                 <SoundPlayer sound={bird.audio} />
             </div>

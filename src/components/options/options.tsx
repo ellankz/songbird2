@@ -27,7 +27,6 @@ const Options = (props : OptionsProps) => {
     const handleOptionCLick = (index: number) => {
         onOptionSelected(index); // pass event to app
         if (correctIndex !== null){
-            console.log('5');
             dispatchBirdsHighlight(HighlightOptionDispatch(index, guessed, correctIndex)); // highlight the correct and incorrect answer
         }
     }

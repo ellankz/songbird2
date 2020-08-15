@@ -18,11 +18,6 @@ export interface HighlightActionInterface {
     }
 }
 
-export interface DetailsActionInterface {
-    type: 'NEW_DETAILS_BIRD',
-    payload: BirdInterface
-}
-
 export interface QuestionActionInterface {
     type: 'NEW_QUESTION_BIRD',
     payload: BirdInterface
