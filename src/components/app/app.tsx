@@ -8,18 +8,36 @@ import NextLevel from '../next-level';
 import { Container} from 'react-bootstrap';
 import reducers from '../../reducers';
 import BirdService from '../../services/bird-service';
+const correctAnswerSound = require('../../audio/correctAnswer.mp3');
+const incorrectAnswerSound = require('../../audio/incorrectAnswer.mp3');
 
 const App = () => {
   const [selectedBird, setSelectedBird] = useState<null | number>(null);
   const [level, dispatchLevel] = useReducer(reducers.levelsReducer, 0);
   const [ guessed, setGuessed ] = useState<boolean>(false);
   const [ correctIndex, setCorrectIndex ] = useState<number | null>(null);
+  const [audio] = useState({correct: new Audio(correctAnswerSound), incorrect: new Audio(incorrectAnswerSound)});
   
 
   const handleOptionSelect = (index: number) => {
     setSelectedBird(index);
-    if (index === correctIndex){
-      setGuessed(true);
+    if (!guessed){
+      if (index === correctIndex){
+        setGuessed(true);
+        playGuessedSound(true);
+      } else {
+        playGuessedSound(false);
+      }
+    }
+  }
+
+  const playGuessedSound = (guessed: boolean) => {
+    if (guessed){
+      audio.correct.currentTime = 0;
+      audio.correct.play();
+    } else {
+      audio.incorrect.currentTime = 0;
+      audio.incorrect.play();
     }
   }
 
