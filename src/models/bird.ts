@@ -4,7 +4,9 @@ export interface BirdInterface {
     audio: string,
     species: string,
     description: string,
-    id: number | null
+    id: number | null,
+    clicked?: boolean,
+    color?: 'red' | 'green' | 'gray'
 }
 
 export interface BirdHighlightInterface {

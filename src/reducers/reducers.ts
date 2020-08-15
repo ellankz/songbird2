@@ -1,11 +1,9 @@
-import { BirdInterface, BirdHighlightInterface } from '../models/bird';
+import { BirdInterface } from '../models/bird';
 import BirdService from '../services/bird-service';
-import { dummyBird } from '../constants';
 import {
     LevelActionInterface,
-    OptionsActionInterface,
-    QuestionActionInterface,
-    HighlightActionInterface
+    NewOptionsActionInterface,
+    ClickActionInterface
 } from '../models/actions';
 
 
@@ -25,48 +23,39 @@ export const levelsReducer = (state = 0, action: LevelActionInterface) => {
 }
 
 
-export const optionsReducer = (state: BirdInterface[] = [], action: OptionsActionInterface) => {
+export const optionsReducer = (state: BirdInterface[] = [], action: NewOptionsActionInterface | ClickActionInterface) => {
     switch (action.type) {
     case 'NEW_OPTIONS':
-        const newBirds = birdService.getBirdsByLevel(action.payload);
-        return newBirds;
-    default:
-        return state;
-    }
-}
-
-
-export const highlightsReducer = (state: BirdHighlightInterface[] = [], action: HighlightActionInterface) => {
-    switch (action.type) {
-    case 'CLICK_OPTION':
-        const { guessed, index, correctIndex } = action.payload;
-        if (guessed){
-            return state;
+        if (typeof(action.payload) === 'number'){
+            const newBirds: BirdInterface[] = birdService.getBirdsByLevel(action.payload);
+            return newBirds;
         } else {
-            return state.map((option: BirdHighlightInterface) => {
-                if (index === option.index){
-                    if (option.index === correctIndex){
-                        const highlightedOptionGreen: BirdHighlightInterface = {...option, color: 'green'};
-                        return highlightedOptionGreen;
+            return state;
+        }
+    case 'CLICK_OPTION':
+        if (typeof(action.payload) !== 'number' || state.length > 0){
+            const { guessed, index, correctIndex } = action.payload;
+            if (guessed){
+                return state;
+            } else {
+                const newState = state.map((bird: BirdInterface, i: number) => {
+                    if (index === i){
+                        let newBird: BirdInterface = {...bird, clicked: true};
+                        if (i === correctIndex){
+                            newBird.color = 'green';
+                        } else {
+                            newBird.color = 'red'
+                        };
+                        return newBird;
                     } else {
-                        const highlightedOptionRed: BirdHighlightInterface = {...option, color: 'red'};
-                        return highlightedOptionRed;
+                        return bird;
                     }
-                } else {
-                    return option;
-                }
-            });
-        } 
-    default:
-        return state;
-    }
-}
-
-export const questionReducer = (state: BirdInterface = dummyBird, action: QuestionActionInterface) => {
-    switch (action.type) {
-    case 'NEW_QUESTION_BIRD':
-        // use action.payload
-        return state;
+                });
+                return newState;
+            }
+        } else {
+            return state;
+        }
     default:
         return state;
     }

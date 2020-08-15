@@ -1,12 +1,8 @@
 import {
     LevelActionInterface,
-    OptionsActionInterface,
-    HighlightActionInterface,
-    QuestionActionInterface
+    NewOptionsActionInterface,
+    ClickActionInterface
 } from '../models/actions';
-
-import { BirdInterface } from '../models/bird';
-
 
 export const NextLevelDispatch = () => {
     const nextLevelAction: LevelActionInterface = {
@@ -16,15 +12,15 @@ export const NextLevelDispatch = () => {
 }
 
 export const NewOptionsDispatch = (level: number) => {
-    const newOptionsAction: OptionsActionInterface = {
+    const newOptionsAction: NewOptionsActionInterface = {
         type: 'NEW_OPTIONS',
         payload: level
     }
     return newOptionsAction;
 }
 
-export const HighlightOptionDispatch = (index: number, guessed: boolean, correctIndex: number) => {
-    const highlightAction: HighlightActionInterface = {
+export const ClickOptionDispatch = (index: number, guessed: boolean, correctIndex: number) => {
+    const clickAction: ClickActionInterface = {
         type: 'CLICK_OPTION',
         payload: {
             guessed: guessed,
@@ -32,13 +28,5 @@ export const HighlightOptionDispatch = (index: number, guessed: boolean, correct
             correctIndex: correctIndex
         }
     }
-    return highlightAction;
-}
-
-export const NewQuestionBirdDispatch = (bird: BirdInterface) => {
-    const newQuestionBirdAction: QuestionActionInterface = {
-        type: 'NEW_QUESTION_BIRD',
-        payload: bird
-    }
-    return newQuestionBirdAction;
+    return clickAction;
 }

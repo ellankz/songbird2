@@ -17,6 +17,8 @@ const App = () => {
   const [ guessed, setGuessed ] = useState<boolean>(false);
   const [ correctIndex, setCorrectIndex ] = useState<number | null>(null);
   const [audio] = useState({correct: new Audio(correctAnswerSound), incorrect: new Audio(incorrectAnswerSound)});
+  const [ score, setScore ] = useState<number>(0);
+  const [ levelScore, setLevelScore ] = useState<number>(5);
   
 
   const handleOptionSelect = (index: number) => {
@@ -51,14 +53,14 @@ const App = () => {
   useLayoutEffect(() => {
     const birdService = new BirdService();
     if (correctIndex !== null){
-      console.log(birdService.getBird(level, correctIndex).name);
+      console.log('Correct answer:', birdService.getBird(level, correctIndex).name);
     }
   }, [level, correctIndex]);
 
   return (
     <div className="App">
       <Container>
-        <Header currentLevel={level} />
+        <Header currentLevel={level} score={score} />
         <Question level={level} correctIndex={correctIndex} guessed={guessed} />
         <div className="main">
           <Options onOptionSelected={handleOptionSelect} currentLevel={level} guessed={guessed} correctIndex={correctIndex} />

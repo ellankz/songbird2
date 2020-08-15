@@ -1,13 +1,11 @@
 import { 
     NextLevelDispatch,
     NewOptionsDispatch,
-    NewQuestionBirdDispatch,
-    HighlightOptionDispatch
+    ClickOptionDispatch
  } from './actions';
 
 export { 
     NextLevelDispatch,
     NewOptionsDispatch,
-    NewQuestionBirdDispatch,
-    HighlightOptionDispatch
+    ClickOptionDispatch
 };

@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
 import { BirdInterface } from '../../models/bird';
 import { Jumbotron, ListGroup } from 'react-bootstrap';
-import { NewOptionsDispatch, HighlightOptionDispatch } from '../../actions';
-import { initialHighlights } from '../../constants';
+import { NewOptionsDispatch, ClickOptionDispatch } from '../../actions';
 import reducers from '../../reducers';
 import './options.scss';
+
 
 interface OptionsProps {
     onOptionSelected: (index: number) => void,
@@ -16,7 +16,6 @@ interface OptionsProps {
 const Options = (props : OptionsProps) => {
     const { onOptionSelected, currentLevel, guessed, correctIndex } = props;
     const [birds, dispatchBirds] = useReducer(reducers.optionsReducer, []);
-    const [birdsHighlights, dispatchBirdsHighlight] = useReducer(reducers.highlightsReducer, initialHighlights)
     
     useEffect(() => {
         if (currentLevel !== null){
@@ -27,9 +26,13 @@ const Options = (props : OptionsProps) => {
     const handleOptionCLick = (index: number) => {
         onOptionSelected(index); // pass event to app
         if (correctIndex !== null){
-            dispatchBirdsHighlight(HighlightOptionDispatch(index, guessed, correctIndex)); // highlight the correct and incorrect answer
+            dispatchBirds(ClickOptionDispatch(index, guessed, correctIndex));
         }
     }
+
+    useEffect(() => {
+        console.log(birds);
+    }, [birds]);
 
     return (
         <Jumbotron className="options">
@@ -38,7 +41,7 @@ const Options = (props : OptionsProps) => {
                     return (
                         <ListGroup.Item 
                             key={bird.id}
-                            className={birdsHighlights[index].color}
+                            className={bird.color}
                             onClick={() => handleOptionCLick(index)}>
                                 {bird.name}       
                         </ListGroup.Item>
