@@ -48,6 +48,7 @@ const App = () => {
 
   const handleStartOver = () => {
     setLevel(0);
+    setSelectedBird(null);
     setGuessed(false);
     setScore(0);
     setLevelScore(5);
