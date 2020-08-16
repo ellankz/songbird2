@@ -18,7 +18,7 @@ const Header = (props: HeaderProps) => {
                 <div className="score">Score: {props.score}</div>
             </div>
             <div className="button-panel">
-                <ButtonGroup aria-label="Quiz Levels" size="lg">
+                <ButtonGroup aria-label="Quiz Levels" size="lg" flex-wrap>
                     {buttonTitles.map((title, index) => {
                         return (
                             <Button variant="primary" key={index} active={index === props.currentLevel}>

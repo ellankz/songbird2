@@ -9,6 +9,11 @@
 
     .bird-data {
         display: flex;
+        flex-direction: column;
+
+        @media (min-width: 992px) {
+            flex-direction: row;
+        }
         > img {
             width: 200px;
             height: auto;

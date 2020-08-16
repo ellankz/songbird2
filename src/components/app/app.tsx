@@ -57,9 +57,11 @@ const App = () => {
   const playGuessedSound = (guessed: boolean) => {
     if (guessed){
       audio.correct.currentTime = 0;
+      audio.correct.volume = 0.5;
       audio.correct.play();
     } else {
       audio.incorrect.currentTime = 0;
+      audio.incorrect.volume = 0.5;
       audio.incorrect.play();
     }
   }

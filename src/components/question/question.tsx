@@ -33,7 +33,7 @@ const Question = (props: QuestionProps) => {
             <div>
                 <h3>{guessed ? bird.name : '*******'}</h3>
                 <hr />
-                <SoundPlayer sound={bird.audio} />
+                <SoundPlayer sound={bird.audio} guessed={guessed} />
             </div>
         </Jumbotron>
     );
