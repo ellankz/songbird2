@@ -1,15 +1,7 @@
 import {
-    LevelActionInterface,
     NewOptionsActionInterface,
     ClickActionInterface
 } from '../models/actions';
-
-export const NextLevelDispatch = () => {
-    const nextLevelAction: LevelActionInterface = {
-        type: 'NEXT_LEVEL'
-    }
-    return nextLevelAction;
-}
 
 export const NewOptionsDispatch = (level: number) => {
     const newOptionsAction: NewOptionsActionInterface = {

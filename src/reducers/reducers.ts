@@ -1,27 +1,12 @@
 import { BirdInterface } from '../models/bird';
 import BirdService from '../services/bird-service';
 import {
-    LevelActionInterface,
     NewOptionsActionInterface,
     ClickActionInterface
 } from '../models/actions';
 
 
 const birdService = new BirdService();
-
-export const levelsReducer = (state = 0, action: LevelActionInterface) => {
-    switch (action.type) {
-    case 'NEXT_LEVEL':
-        if (state > 5){
-            return state + 1;
-        } else {
-            return 0;
-        }
-    default:
-        return state;
-    }
-}
-
 
 export const optionsReducer = (state: BirdInterface[] = [], action: NewOptionsActionInterface | ClickActionInterface) => {
     switch (action.type) {

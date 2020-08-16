@@ -1,7 +1,3 @@
-export interface LevelActionInterface {
-    type: 'NEXT_LEVEL'
-}
-
 export interface NewOptionsActionInterface {
     type: 'NEW_OPTIONS',
     payload: number

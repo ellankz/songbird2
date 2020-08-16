@@ -7,7 +7,7 @@ import './options.scss';
 
 
 interface OptionsProps {
-    onOptionSelected: (index: number) => void,
+    onOptionSelected: (index: number, newlyOpened: boolean) => void,
     currentLevel: number,
     guessed: boolean,
     correctIndex: number | null
@@ -24,15 +24,12 @@ const Options = (props : OptionsProps) => {
     }, [currentLevel]);
 
     const handleOptionCLick = (index: number) => {
-        onOptionSelected(index); // pass event to app
+        let newlyOpened = !birds[index].clicked
+        onOptionSelected(index, newlyOpened); // pass event to app
         if (correctIndex !== null){
             dispatchBirds(ClickOptionDispatch(index, guessed, correctIndex));
         }
     }
-
-    useEffect(() => {
-        console.log(birds);
-    }, [birds]);
 
     return (
         <Jumbotron className="options">
