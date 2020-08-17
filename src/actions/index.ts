@@ -1,9 +1,3 @@
-import { 
-    NewOptionsDispatch,
-    ClickOptionDispatch
- } from './actions';
+import { NewOptionsDispatch, ClickOptionDispatch } from './actions';
 
-export { 
-    NewOptionsDispatch,
-    ClickOptionDispatch
-};
+export { NewOptionsDispatch, ClickOptionDispatch };

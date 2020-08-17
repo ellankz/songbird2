@@ -1,31 +1,30 @@
 .end-game {
-    .jumbotron {
-        text-align: center;
+	.jumbotron {
+		text-align: center;
 
-        h1 {
-    
-            @media (min-width: 768px){
-                font-size: 4.5rem;
-                font-weight: 300;
-                line-height: 1.2;
-            }
-        }
+		h1 {
+			@media (min-width: 768px) {
+				font-size: 4.5rem;
+				font-weight: 300;
+				line-height: 1.2;
+			}
+		}
 
-        p {
-            font-size: 1.171875rem;
-            font-weight: 300;
-        }
+		p {
+			font-size: 1.171875rem;
+			font-weight: 300;
+		}
 
-        hr {
-            margin-bottom: 2rem;
-            margin-top: 2rem;
-            border-top-width: 0;
-            border-color: #555;
-        }
+		hr {
+			margin-bottom: 2rem;
+			margin-top: 2rem;
+			border-top-width: 0;
+			border-color: #555;
+		}
 
-        img {
-            margin: 1.5rem auto;
-            max-width: 90%;
-        }
-    }
+		img {
+			margin: 1.5rem auto;
+			max-width: 90%;
+		}
+	}
 }

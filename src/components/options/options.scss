@@ -1,49 +1,48 @@
 .options {
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0;
-    margin-bottom: 1.5rem;
+	border: none;
+	border-radius: 0.25rem;
+	padding: 0;
+	margin-bottom: 1.5rem;
 
-    .list-group {
-        list-style: none;
-        margin: 0;
+	.list-group {
+		list-style: none;
+		margin: 0;
 
-        .list-group-item {
-            padding: 1rem;
-            list-style: none;
-            cursor: pointer;
-            text-align: left;
+		.list-group-item {
+			padding: 1rem;
+			list-style: none;
+			cursor: pointer;
+			text-align: left;
 
-            &:hover {
-                background-color: #444;
-            }
-            
-            &:before {
-                content: '';
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                margin-right: 15px;
-                margin-left: 0;
-                border-radius: 50%;
-                transition: .1s;
-                background-color: #444;
-                position: static;
-                vertical-align: baseline;
-            }
+			&:hover {
+				background-color: #444;
+			}
 
-            &.green {
-                &:before {
-                    background-color: #008966;
-                }
-            }
+			&:before {
+				content: '';
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				margin-right: 15px;
+				margin-left: 0;
+				border-radius: 50%;
+				transition: 0.1s;
+				background-color: #444;
+				position: static;
+				vertical-align: baseline;
+			}
 
-            &.red {
-                &:before {
-                    background-color: red;
-                }
-            }
-        }
-        
-    }
+			&.green {
+				&:before {
+					background-color: #008966;
+				}
+			}
+
+			&.red {
+				&:before {
+					background-color: red;
+				}
+			}
+		}
+	}
 }

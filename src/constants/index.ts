@@ -1,9 +1,3 @@
-import {
-    initialHighlights,
-    dummyBird
-} from './constants';
+import { initialHighlights, dummyBird } from './constants';
 
-export {
-    initialHighlights,
-    dummyBird
-};
+export { initialHighlights, dummyBird };

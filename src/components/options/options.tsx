@@ -5,48 +5,48 @@ import { NewOptionsDispatch, ClickOptionDispatch } from '../../actions';
 import reducers from '../../reducers';
 import './options.scss';
 
-
 interface OptionsProps {
-    onOptionSelected: (index: number, newlyOpened: boolean) => void,
-    currentLevel: number,
-    guessed: boolean,
-    correctIndex: number | null
+	onOptionSelected: (index: number, newlyOpened: boolean) => void;
+	currentLevel: number;
+	guessed: boolean;
+	correctIndex: number | null;
 }
 
-const Options = (props : OptionsProps) => {
-    const { onOptionSelected, currentLevel, guessed, correctIndex } = props;
-    const [birds, dispatchBirds] = useReducer(reducers.optionsReducer, []);
-    
-    useEffect(() => {
-        if (currentLevel !== null){
-            dispatchBirds(NewOptionsDispatch(currentLevel));
-        }
-    }, [currentLevel]);
+const Options = (props: OptionsProps) => {
+	const { onOptionSelected, currentLevel, guessed, correctIndex } = props;
+	const [birds, dispatchBirds] = useReducer(reducers.optionsReducer, []);
 
-    const handleOptionCLick = (index: number) => {
-        let newlyOpened = !birds[index].clicked
-        onOptionSelected(index, newlyOpened); // pass event to app
-        if (correctIndex !== null){
-            dispatchBirds(ClickOptionDispatch(index, guessed, correctIndex));
-        }
-    }
+	useEffect(() => {
+		if (currentLevel !== null) {
+			dispatchBirds(NewOptionsDispatch(currentLevel));
+		}
+	}, [currentLevel]);
 
-    return (
-        <Jumbotron className="options">
-            <ListGroup>
-                {birds.map((bird: BirdInterface, index: number) => {
-                    return (
-                        <ListGroup.Item 
-                            key={bird.id}
-                            className={bird.color}
-                            onClick={() => handleOptionCLick(index)}>
-                                {bird.name}       
-                        </ListGroup.Item>
-                    );
-                })}
-            </ListGroup>
-        </Jumbotron>
-    );
-}
+	const handleOptionCLick = (index: number) => {
+		let newlyOpened = !birds[index].clicked;
+		onOptionSelected(index, newlyOpened); // pass event to app
+		if (correctIndex !== null) {
+			dispatchBirds(ClickOptionDispatch(index, guessed, correctIndex));
+		}
+	};
+
+	return (
+		<Jumbotron className="options">
+			<ListGroup>
+				{birds.map((bird: BirdInterface, index: number) => {
+					return (
+						<ListGroup.Item
+							key={bird.id}
+							className={bird.color}
+							onClick={() => handleOptionCLick(index)}
+						>
+							{bird.name}
+						</ListGroup.Item>
+					);
+				})}
+			</ListGroup>
+		</Jumbotron>
+	);
+};
 
 export default Options;
