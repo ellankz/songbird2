@@ -15,7 +15,7 @@ const Header = (props: HeaderProps) => {
 		'Польша',
 		'Норвегия',
 		'Ирландия',
-		'Мале',
+		'Мали',
 	]);
 
 	return (
