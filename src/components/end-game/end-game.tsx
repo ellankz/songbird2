@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './end-game.scss';
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Jumbotron, Button, Container } from 'react-bootstrap';
 import winner from '../../images/winner.jpg';
 const winnerSound = require('../../audio/winnerSound.mp3');
 
@@ -21,7 +21,7 @@ const EndGame = (props: EndGameProps) => {
 	}, [score, audio]);
 
 	return (
-		<div className="end-game">
+		<Container className="end-game">
 			<Jumbotron>
 				<h1>Поздравляем!</h1>
 				<p>Вы прошли викторину и набрали {score} из 30 возможных баллов</p>
@@ -38,7 +38,7 @@ const EndGame = (props: EndGameProps) => {
 					Сначала
 				</Button>
 			</Jumbotron>
-		</div>
+		</Container>
 	);
 };
 

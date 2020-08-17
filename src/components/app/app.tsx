@@ -43,6 +43,7 @@ const App = () => {
 			setLevel(level + 1);
 			setGuessed(false);
 			setLevelScore(5);
+			setSelectedBird(null);
 		} else {
 			setEndGame(true);
 		}

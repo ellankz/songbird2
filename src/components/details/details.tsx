@@ -55,6 +55,8 @@ const Details = (props: DetailsProps) => {
 				selectedBird
 			);
 			setBird(newBird);
+		} else {
+			setBird(null);
 		}
 	}, [selectedBird, currentLevel, birdService]);
 

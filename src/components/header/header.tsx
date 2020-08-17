@@ -10,12 +10,12 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
 	const [buttonTitles] = useState<string[]>([
-		'Разминка',
-		'Воробьиные',
-		'Лесные птицы',
-		'Певчие птицы',
-		'Хищные птицы',
-		'Морские птицы',
+		'Украина',
+		'Беларусь',
+		'Польша',
+		'Норвегия',
+		'Ирландия',
+		'Мале',
 	]);
 
 	return (
