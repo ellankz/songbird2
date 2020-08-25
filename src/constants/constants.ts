@@ -3,7 +3,6 @@ import { BirdInterface, BirdHighlightInterface } from '../models/bird';
 export const dummyBird: BirdInterface = {
 	image: '',
 	name: '',
-	audio: '',
 	id: null,
 	description: '',
 	species: '',
