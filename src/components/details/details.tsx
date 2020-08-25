@@ -20,6 +20,7 @@ const DetailsPlaceholder = () => (
 
 interface BirdDetailsProps {
 	bird: BirdInterface | null;
+	birdSound: string;
 }
 
 const BirdDetails = (props: BirdDetailsProps) => {
@@ -34,7 +35,7 @@ const BirdDetails = (props: BirdDetailsProps) => {
 						<h5>{props.bird.species}</h5>
 					</div>
 				</div>
-				<SoundPlayer sound={props.bird.audio} />
+				<SoundPlayer sound={props.birdSound} />
 				<div className="bird-text">{props.bird.description}</div>
 			</React.Fragment>
 		);
@@ -47,6 +48,7 @@ const Details = (props: DetailsProps) => {
 	const { selectedBird, currentLevel } = props;
 	const birdService = new BirdService();
 	const [bird, setBird] = useState<BirdInterface | null>(null);
+	const [birdSound, setBirdSound] = useState<string>('');
 
 	useEffect(() => {
 		if (selectedBird !== null) {
@@ -60,10 +62,18 @@ const Details = (props: DetailsProps) => {
 		}
 	}, [selectedBird, currentLevel, birdService]);
 
+	useEffect(() => {
+		if (bird !== null) {
+			setBirdSound(
+				require(`../../audio/birdsongs/${currentLevel}/${bird.id}.mp3`)
+			);
+		}
+	}, [bird, currentLevel]);
+
 	return (
 		<Jumbotron className="details">
 			{!bird && <DetailsPlaceholder />}
-			<BirdDetails bird={bird} />
+			<BirdDetails bird={bird} birdSound={birdSound} />
 		</Jumbotron>
 	);
 };

@@ -17,6 +17,7 @@ const Question = (props: QuestionProps) => {
 	const { correctIndex, level, guessed } = props;
 
 	const [bird, setBird] = useState<BirdInterface>(dummyBird);
+	const [birdSound, setBirdSound] = useState<string>('');
 
 	const birdService = new BirdService();
 	useEffect(() => {
@@ -30,6 +31,12 @@ const Question = (props: QuestionProps) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [correctIndex, level]);
 
+	useEffect(() => {
+		if (bird !== null && bird.id !== null) {
+			setBirdSound(require(`../../audio/birdsongs/${level}/${bird.id}.mp3`));
+		}
+	}, [bird, level]);
+
 	return (
 		<Jumbotron className="question">
 			<img
@@ -39,7 +46,7 @@ const Question = (props: QuestionProps) => {
 			<div>
 				<h3>{guessed ? bird.name : '*******'}</h3>
 				<hr />
-				<SoundPlayer sound={bird.audio} guessed={guessed} />
+				<SoundPlayer sound={birdSound} guessed={guessed} />
 			</div>
 		</Jumbotron>
 	);
