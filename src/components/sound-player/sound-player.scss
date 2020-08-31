@@ -1,0 +1,78 @@
+.rhap_container {
+	background: transparent;
+	box-shadow: none;
+	padding: 0;
+	min-width: 240px;
+
+	@media (min-width: 580px) {
+		min-width: 300px;
+	}
+
+	.rhap_volume-controls {
+		display: none;
+
+		@media (min-width: 580px) {
+			display: flex;
+			margin: 0 10px;
+		}
+	}
+
+	.rhap_progress-section {
+		position: relative;
+		padding: 15px 0;
+		margin-left: 10px;
+		flex: 7 1 auto;
+	}
+
+	.rhap_current-time {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+
+	.rhap_total-time {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	.rhap_controls-section {
+		flex: 0 1 auto;
+
+		@media (min-width: 580px) {
+			flex: 1 1 auto;
+		}
+	}
+
+	.rhap_play-pause-button {
+		margin: 0;
+
+		svg {
+			color: #375a7f;
+		}
+	}
+
+	.rhap_time {
+		color: #d3d3d3;
+		font-size: 0.8rem;
+	}
+
+	.rhap_progress-filled {
+		background-color: #375a7f;
+	}
+
+	.rhap_progress-bar {
+		background-color: grey;
+	}
+
+	.rhap_progress-indicator {
+		width: 16px;
+		height: 16px;
+		margin-left: -10px;
+		top: -6px;
+	}
+
+	.rhap_progress-container {
+		margin: 0;
+	}
+}

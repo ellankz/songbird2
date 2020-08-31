@@ -1,0 +1,40 @@
+.details {
+	border: 1px solid #555;
+	border-radius: 0.25rem;
+	text-align: left;
+	padding: 1.5rem;
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+
+	.bird-data {
+		display: flex;
+		flex-direction: column;
+
+		@media (min-width: 992px) {
+			flex-direction: row;
+		}
+		> img {
+			width: 200px;
+			height: auto;
+			border-radius: 10px;
+			margin: 0 1rem 1rem 0;
+		}
+		hr {
+			margin-bottom: 1rem;
+			border-top-width: 0;
+			border-color: #555;
+		}
+
+		h5 {
+			margin-top: 1rem;
+		}
+		.sound-player {
+			width: 100%;
+		}
+	}
+
+	.bird-text {
+		margin-top: 1rem;
+	}
+}

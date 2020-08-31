@@ -1,0 +1,55 @@
+.top-panel {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+
+	.score {
+		display: flex;
+		align-items: flex-end;
+		font-size: 1.2rem;
+	}
+}
+
+.button-panel {
+	.btn-group {
+		flex-wrap: wrap;
+		border-radius: 5px;
+		overflow: hidden;
+		display: flex;
+
+		button {
+			cursor: default;
+			box-shadow: none;
+
+			&:hover,
+			&:focus,
+			&:active,
+			&:active:focus,
+			&:active:hover,
+			&:hover:focus {
+				&:not(.disabled) {
+					background-color: #375a7f;
+					border-color: #375a7f;
+					cursor: default;
+					box-shadow: none;
+				}
+			}
+
+			&.active {
+				&:hover,
+				&:focus,
+				&:active,
+				&:active:focus,
+				&:active:hover,
+				&:hover:focus {
+					background-color: #28415b;
+					border-color: #243a53;
+					box-shadow: none;
+					cursor: default;
+				}
+			}
+		}
+	}
+	margin-bottom: 1.5rem;
+}
